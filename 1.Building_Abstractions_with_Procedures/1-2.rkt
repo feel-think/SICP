@@ -34,7 +34,29 @@
          (* 2 (f (- n 2)))
          (* 3 (f (- n 3))))))
 
-(define (f-iterative n))
+(define (f-iterative n)
+  (define (iter f-i-2 f-i-1 f-i i)
+    (define f-i+1
+      (+ f-i
+         (* 2 f-i-1)
+         (* 3 f-i-2)))
+    (if (= i n)
+        f-i
+        (iter f-i-1
+              f-i
+              f-i+1
+              (+ i 1))))
+  (if (< n 3)
+      n
+      (iter 0 1 2 2)))
+
+; E 1.12
+(define (pascal row col)
+  (if (or (= col 1) (= col row))
+      1
+      (+ (pascal (- row 1) (- col 1))
+         (pascal (- row 1) col))))
+
 
 
 
